@@ -1,0 +1,32 @@
+{
+    "title": "Kanban",
+    "cols": [
+        {
+            "title": "Bugs",
+            "tasks": [],
+            "id": "clsc5642j000a3q67bews1dge",
+            "color": "#eb144c"
+        },
+        {
+            "title": "To-Do",
+            "tasks": [],
+            "id": "clsc5642j000c3q674o0eaut8",
+            "color": "#fcb900"
+        },
+        {
+            "title": "Doing",
+            "tasks": [],
+            "id": "clsc5642j000d3q67niq8ybgc",
+            "color": "#0693e3"
+        },
+        {
+            "title": "Done",
+            "tasks": [],
+            "id": "clsc5642j000e3q6748fb10wz",
+            "color": "#00d084"
+        }
+    ],
+    "autosave": true,
+    "saveToFile": true,
+    "timestamp": 1707331649490
+}
