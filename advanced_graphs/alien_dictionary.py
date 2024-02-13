@@ -59,4 +59,4 @@ class Solution:
 
 s = Solution()
 words = ["wrt","wrf","er","ett","rftt"]
-print(s.alienOrder(words))
+print(s.alienOrder(words)) #wertf

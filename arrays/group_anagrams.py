@@ -22,4 +22,4 @@ class Solution:
         return res.values()
 
 strs = ["eat","tea","tan","ate","nat","bat"]
-print(Solution().groupAnagrams(strs))
+print(Solution().groupAnagrams(strs)) #[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]

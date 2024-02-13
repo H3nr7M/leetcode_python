@@ -23,6 +23,6 @@ class Solution:
         return res
 
 nums = [0,3,7,2,5,8,4,6,0,1]
-print(Solution().longestConsecutive(nums)) 
+print(Solution().longestConsecutive(nums)) #9
 # final time complexity: O(n)
 

@@ -8,11 +8,9 @@ Output: 321
 class Solution:
     def reverseBits(self, n: int) -> int:
         res = 0
-        power = 31
-        while n:
-            res += (n & 1) << power
-            n = n >> 1
-            power -= 1
+        for i in range(32):
+            bit = (n >> i) & 1 #obtener el valor
+            res = res | (bit << (31 - i)) #escribir valor
         return res
         
 
