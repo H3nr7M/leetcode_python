@@ -11,11 +11,11 @@ To take course 1 you should have finished course 0. So it is possible.
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
         # dfs
-        preMap = {i: [] for i in range(numCourses)}
+        preMap = {i: [] for i in range(numCourses)} #dic node: []
 
         # map each course to : prereq list
         for crs, pre in prerequisites:
-            preMap[crs].append(pre)
+            preMap[crs].append(pre) #dic node: [pre1, pren]
 
         visiting = set()
 

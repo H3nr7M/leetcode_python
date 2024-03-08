@@ -8,7 +8,7 @@
 # Explanation: The input binary string 00000000000000000000000000001011 has a total of three '1' bits.
 
 class Solution:
-    def hammingWeight(self, n: int) -> int:
+    def hamming_weight(self, n: int) -> int:
         count = 0
         while n: # the whole value of n
             count += n & 1 # performs a bitwise AND operation, this operation extracts the least significant bit of n.
@@ -18,4 +18,4 @@ class Solution:
     
 if __name__ == '__main__':
     n = 0o0010001001011
-    print(Solution().hammingWeight(n))
+    print(Solution().hamming_weight(n)) #5

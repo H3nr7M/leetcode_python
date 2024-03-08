@@ -2,29 +2,33 @@
 # Notice that the solution set must not contain duplicate triplets.
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        res = []
         nums.sort()
-        for i in range(len(nums)-2): # n=6 range 0 to 4
-            if nums[i] > 0:
-                break
-            if i > 0 and nums[i] == nums[i-1]: # skip duplicates
+        result = []
+
+        for i in range(len(nums) - 2):  # Recorre hasta el tercer elemento desde el final
+            if i > 0 and nums[i] == nums[i - 1]:  # Saltar duplicados para i
                 continue
-            l, r = i+1, len(nums)-1 # two pointers
-            while l < r:
-                total = nums[i] + nums[l] + nums[r]
-                if total < 0:
-                    l += 1
-                elif total > 0:
-                    r -= 1
+
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                suma = nums[i] + nums[left] + nums[right]
+                if suma < 0:
+                    left += 1
+                elif suma > 0:
+                    right -= 1
                 else:
-                    res.append([nums[i], nums[l], nums[r]])
-                    while l < r and nums[l] == nums[l+1]:
-                        l +=1
-                    while l < r and nums[r] == nums[r-1]:
-                        r -=1
-                    l += 1
-                    r -= 1
-        return res
+                    result.append([nums[i], nums[left], nums[right]])
+
+                    # Saltar duplicados para left y right
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+
+                    left += 1
+                    right -= 1
+
+        return result
 
 
     

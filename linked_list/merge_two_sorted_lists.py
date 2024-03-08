@@ -29,7 +29,7 @@ class Solution:
         if not l2:
             return l1
 
-        cur = dummy = ListNode()
+        cur = dummy = ListNode() #cur y dummy apuntan a donde mismo al principio
         while l1 and l2:
             if l1.val < l2.val:
                 cur.next = l1
