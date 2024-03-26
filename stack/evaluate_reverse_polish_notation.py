@@ -21,4 +21,26 @@ Explanation: ((2 + 1) * 3) = 9
 '''
 class Solution:
     def evalRPN(self, tokens: list[str]) -> int:
-        pass
+        stack = []
+
+        for t in tokens:
+            if t in {'+', '-', '*', '/'}:
+                b = stack.pop()
+                a = stack.pop()
+                if t == '+':
+                    stack.append(a + b)
+                elif t == '-':
+                    stack.append(a - b)
+                elif t == '*':
+                    stack.append(a * b)
+                else:  # t == '/'
+                    # Tratar la división entre enteros
+                    stack.append(int(a / b))
+            else:
+                stack.append(int(t))
+
+        return stack[0]
+
+rpn = Solution() 
+tokens = ["2","1","+","3","*"]
+print(rpn.evalRPN(tokens=tokens)) #9

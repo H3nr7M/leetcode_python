@@ -25,4 +25,30 @@ Note that no other cars meet these fleets before the destination, so the answer 
 '''
 class Solution:
     def carFleet(self, target: int, position: list[int], speed: list[int]) -> int:
-        pass
+        # Combinar las posiciones y velocidades en una lista de tuplas
+        cars = sorted(zip(position, speed), reverse=True)
+        # [(10,2),(8,4),(5,1),(3,3),(0,1)]
+        
+        # Función para calcular el tiempo que tardará un auto en llegar al destino
+        def time_to_reach(car_pos, car_speed):
+            return (target - car_pos) / car_speed
+        
+        fleets = 0
+        last_fleet_time = float('-inf')
+        
+        for pos, speed in cars:
+            arrival_time = time_to_reach(pos, speed)
+            
+            # Si el auto llega después del último auto en la flota actual,
+            # se crea una nueva flota y se actualiza el tiempo de llegada del último auto
+            if arrival_time > last_fleet_time:
+                fleets += 1
+                last_fleet_time = arrival_time
+        
+        return fleets
+    
+sol = Solution()
+target = 12
+position = [10,8,0,5,3]
+speed = [2,4,1,1,3]
+print(sol.carFleet(target, position, speed))
