@@ -24,28 +24,25 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        if not l1:
-            return l2
-        if not l2:
-            return l1
+        dummy = ListNode()
+        cur = dummy
 
-        cur = dummy = ListNode() #cur y dummy apuntan a donde mismo al principio
-        while l1 and l2:
-            if l1.val < l2.val:
-                cur.next = l1
-                l1 = l1.next
-     
+        while list1 and list2:
+            if list1.val < list2.val:
+                cur.next = list1
+                list1 = list1.next
+
             else:
-                cur.next = l2
-                l2 = l2.next
+                cur.next = list2
+                list2 = list2.next
 
             cur = cur.next
-                
-        if l1:
-            cur.next = l1
 
-        else:
-            cur.next = l2
+        if list1:
+            cur.next = list1
+
+        if list2:
+            cur.next = list2
 
         return dummy.next
     

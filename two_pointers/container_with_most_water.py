@@ -4,16 +4,19 @@
 
 class Solution:
     def max_area(self, height: list[int]) -> int:
-        l, r = 0, len(height) - 1
-        res = 0
+        result = 0
+        left, right = 0, len(height) - 1
 
-        while l < r:
-            res = max(res, min(height[l], height[r]) * (r - l))
-            if height[l] < height[r]:
-                l += 1
-            elif height[r] <= height[l]:
-                r -= 1
-        return res
+        while left < right:
+            base = right - left
+            if height[left] < height[right]:
+                result = max(result, height[left]*base)
+                left += 1
+            else:
+                result = max(result, height[right]*base)
+                right -= 1
+
+        return result
 
 height = [1,8,6,2,5,4,8,3,7]
 print(Solution().max_area(height)) # Output: 49

@@ -26,20 +26,22 @@ class TreeNode:
         return " ".join(result)
     
 class Solution:
-    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
-        if not s:
+    def isSubtree(self, root: TreeNode, sub: TreeNode) -> bool:
+        if not sub: #todos los nodos tienen un subtree null
+            return True
+        if not root: #en algun punto va a entrar a este if
             return False
-        
-        if self.sameTree(s, t):
+
+        if self.sameTree(root, sub): #si es falto siguie el prog
             return True
         
-        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
-            
-    def sameTree(self, s, t):
-        if not s and not t:
+        return self.isSubtree(root.left, sub) or self.isSubtree(root.right, sub)
+
+    def sameTree(self, root, sub):
+        if not root and not sub:
             return True
-        if s and t and s.val == t.val:
-            return self.sameTree(s.left, t.left) and self.sameTree(s.right, t.right)
+        if root and sub and root.val == sub.val:
+            return self.sameTree(root.left, sub.left) and self.sameTree(root.right, sub.right)
         return False
 
 root = TreeNode(3, TreeNode(4, TreeNode(1), TreeNode(2)), TreeNode(5))

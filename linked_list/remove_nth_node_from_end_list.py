@@ -23,21 +23,21 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        # Reverse the linked list
-        slow, fast = head, head
-        while n:
-            fast = fast.next
-            n -= 1
-        if not fast:
-            return head.next
-        
-        while fast.next:
-            slow = slow.next
-            fast = fast.next
-        
-        slow.next = slow.next.next
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
 
-        return head
+        while n > 0:
+            right = right.next
+            n -= 1
+
+        while right:
+            left = left.next
+            right = right.next
+
+        # delete
+        left.next = left.next.next
+        return dummy.next
         
 
 

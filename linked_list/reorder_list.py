@@ -23,29 +23,35 @@ class ListNode:
 
 class Solution:
     def reorderList(self, head: ListNode) -> None:
-        # find middle
-        slow, fast = head, head.next
+        if not head or not head.next:
+            return
+
+        # Encontrar la mitad de la lista
+        slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
-        # reverse second half
-        second = slow.next # it's the beginning of second half
-        prev = slow.next = None # cut off the first half
-        while second:
-            tmp = second.next
-            second.next = prev
-            prev = second
-            second = tmp
+        # Invertir la segunda mitad de la lista, tiene mas en numeros impares
+        prev, curr = None, slow
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+        second_half = prev
 
-        # prev is the last node of second half
-        # merge two halfs
-        first, second = head, prev
-        while second: # second half is always shorter or equal to first half
-            tmp_first, tmp_sec = first.next, second.next
-            first.next = second
-            second.next = tmp_first
-            first, second = tmp_first, tmp_sec # advance pointers
+        # Fusionar las dos sublistas
+        first_half = head
+        while second_half.next: #porque la segunda mitad tiene mas en impares
+            temp1 = first_half.next
+            temp2 = second_half.next
+            first_half.next = second_half
+            second_half.next = temp1
+            first_half = temp1
+            second_half = temp2
+
+        return head
 
 head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
 f=Solution()

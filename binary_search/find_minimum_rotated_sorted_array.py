@@ -16,30 +16,31 @@ Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
 '''
 class Solution:
     def findMin(self, nums: list[int]) -> int:
-
-        if len(nums) == 1:
-            return nums[0]
-        
         left, right = 0, len(nums) - 1
-        
-        # Check if the array is rotated
-        if nums[right] > nums[0]:
-            return nums[0]
-        
-        # Binary search for the minimum value
+
+        # Si el arreglo no está rotado, el primer elemento es el mínimo
+        if nums[left] <= nums[right]:
+            return nums[left]
+
         while left <= right:
-            mid = (left + right) // 2
+            mid = left + (right - left) // 2
+
+            # Verifica si el punto medio es el mínimo
             if nums[mid] > nums[mid + 1]:
                 return nums[mid + 1]
-            if nums[mid] < nums[mid - 1]:
+
+            if nums[mid - 1] > nums[mid]:
                 return nums[mid]
-            if nums[mid] > nums[0]:
+
+            # Decide en qué mitad del arreglo buscar
+            if nums[mid] > nums[right]:
                 left = mid + 1
             else:
                 right = mid - 1
-
+        
+    
 if __name__ == "__main__":
     f = Solution()
-    nums = [4,5,6,7,8,9,10,11,12,13,14,0,1,2]
+    nums = [4,5,6,7,8,9,10,11,12,13,14,0,1,2] #0
     print(f.findMin(nums))
 

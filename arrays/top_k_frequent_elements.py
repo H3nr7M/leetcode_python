@@ -9,27 +9,25 @@ Output: [1]
 '''
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-#         dic = collections.Counter(nums)
-#         res = []
-#         for i in range(k):
-#             res.append(dic.most_common()[i][0]) # dic is sort by the most common to the least common
-#         return res
+        '''contar valor y frecuencia'''
         dic = {}
-        for n in nums:
-            dic[n] = 1 + dic.get(n, 0)
+        for num in nums:
+            dic[num] = 1 + dic.get(num, 0)
 
+        #lista de arreglos vacios + 1, para eliminar la frec 0
         bucket = [[] for _ in range(len(nums)+1)]
-        for ke, v in dic.items():
-            bucket[v].append(ke)
+
+        for num, frec in dic.items():
+            bucket[frec].append(num)
+
         res = []
-        for i in range(len(bucket)-1, 0, -1):
+
+        for i in range(len(bucket)-1, 0, -1): #a cero porque no lo vas a tomar
             for j in bucket[i]:
                 res.append(j)
                 if len(res) == k:
                     return res
         
-# import collections
-
 nums = [1,1,1,2,2,3]
 k = 2
 print(Solution().topKFrequent(nums, k)) # Output: [1, 2]
